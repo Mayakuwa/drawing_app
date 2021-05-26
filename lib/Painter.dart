@@ -105,7 +105,8 @@ class PaintController extends ChangeNotifier {
   // ペイント履歴
   PaintHistory _paintHistory = PaintHistory();
   //　線の色
-  Color _drawColor = Color.fromARGB(225, 0, 0, 0);
+  // Color _drawColor = Color.fromARGB(225, 0, 0, 0);
+  Color drawColor;
   //　線幅
   double _thickness = 5.0;
   // 背景色
@@ -114,10 +115,10 @@ class PaintController extends ChangeNotifier {
   /*
    * コンストラクタ
    */
-  PaintController(): super() {
+  PaintController({this.drawColor}): super() {
     //ペイント設定
     Paint paint = Paint();
-    paint.color = _drawColor;
+    paint.color = this.drawColor;
     paint.style = PaintingStyle.stroke;
     paint.strokeWidth = _thickness;
     _paintHistory.currentPaint = paint;

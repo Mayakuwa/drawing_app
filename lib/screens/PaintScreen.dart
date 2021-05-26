@@ -3,6 +3,14 @@ import 'package:drawing_app/define/Common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+enum Color {
+  black,
+  pink,
+  blue,
+  green,
+  yellow
+}
+
 class PaintScreen extends StatefulWidget {
   @override
   _PaintScreenState createState() => _PaintScreenState();
@@ -11,7 +19,8 @@ class PaintScreen extends StatefulWidget {
 class _PaintScreenState extends State<PaintScreen> {
 
   //コントローラー
-  PaintController _controller = PaintController();
+  PaintController _controller = PaintController(
+      drawColor: Colors.black);
 
 
   @override
@@ -57,6 +66,45 @@ class _PaintScreenState extends State<PaintScreen> {
             heroTag: 'clear',
             onPressed: () => _controller.clear(),
             child: Text('Clear'),
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          FloatingActionButton(
+              backgroundColor: Colors.black,
+              heroTag: 'blue',
+              onPressed: () {
+                setState(() {
+                  _controller = PaintController(
+                      drawColor: Colors.blue);
+                });
+              }
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          FloatingActionButton(
+            backgroundColor: Colors.red,
+            heroTag: 'blue',
+            onPressed: () {
+              setState(() {
+                _controller = PaintController(
+                    drawColor: Colors.red);
+              });
+            }
+          ),
+          SizedBox(
+            height: 20.0,
+          ),
+          FloatingActionButton(
+              backgroundColor: Colors.blue,
+              heroTag: 'blue',
+              onPressed: () {
+                setState(() {
+                  _controller = PaintController(
+                      drawColor: Colors.blue);
+                });
+              }
           ),
         ],
       ),
