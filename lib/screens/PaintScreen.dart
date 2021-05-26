@@ -19,8 +19,7 @@ class PaintScreen extends StatefulWidget {
 class _PaintScreenState extends State<PaintScreen> {
 
   //コントローラー
-  PaintController _controller = PaintController(
-      drawColor: Colors.black);
+  PaintController _controller = PaintController();
 
 
   @override
@@ -74,10 +73,7 @@ class _PaintScreenState extends State<PaintScreen> {
               backgroundColor: Colors.black,
               heroTag: 'blue',
               onPressed: () {
-                setState(() {
-                  _controller = PaintController(
-                      drawColor: Colors.blue);
-                });
+
               }
           ),
           SizedBox(
@@ -87,10 +83,7 @@ class _PaintScreenState extends State<PaintScreen> {
             backgroundColor: Colors.red,
             heroTag: 'blue',
             onPressed: () {
-              setState(() {
-                _controller = PaintController(
-                    drawColor: Colors.red);
-              });
+
             }
           ),
           SizedBox(
@@ -100,10 +93,7 @@ class _PaintScreenState extends State<PaintScreen> {
               backgroundColor: Colors.blue,
               heroTag: 'blue',
               onPressed: () {
-                setState(() {
-                  _controller = PaintController(
-                      drawColor: Colors.blue);
-                });
+
               }
           ),
         ],
