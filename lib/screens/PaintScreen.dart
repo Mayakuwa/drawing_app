@@ -1,3 +1,4 @@
+import 'package:drawing_app/Painter.dart';
 import 'package:drawing_app/define/Common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,14 +10,21 @@ class PaintScreen extends StatefulWidget {
 
 class _PaintScreenState extends State<PaintScreen> {
 
+  //コントローラー
+  PaintController _controller = PaintController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('お絵描き'),
+        centerTitle: true,
       ),
       body: Container(
-        color: Common.primaryColor.shade50
+        child: Painter(
+          painterController: _controller,
+        ),
       ),
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -24,7 +32,9 @@ class _PaintScreenState extends State<PaintScreen> {
           FloatingActionButton(
             heroTag: 'undo',
             onPressed: () {
-
+              if(_controller.canUndo) {
+                _controller.undo();
+              }
             },
             child: Text('Undo'),
           ),
@@ -34,7 +44,9 @@ class _PaintScreenState extends State<PaintScreen> {
           FloatingActionButton(
             heroTag: 'redo',
             onPressed: () {
-
+              if(_controller.canRedo) {
+                _controller.redo();
+              }
             },
             child: Text('Redo'),
           ),
@@ -43,9 +55,7 @@ class _PaintScreenState extends State<PaintScreen> {
           ),
           FloatingActionButton(
             heroTag: 'clear',
-            onPressed: () {
-
-            },
+            onPressed: () => _controller.clear(),
             child: Text('Clear'),
           ),
         ],

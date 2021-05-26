@@ -11,7 +11,11 @@ class _PaintData {
 
 }
 
-//ペイントの履歴を管理
+  /*
+   * ペイントの履歴を管理
+   * ジェクチャーを受け取り線のデータを管理
+   * undoやredo、clear機能
+   */
 class PaintHistory {
   //key/value形式のデータをmapするときは、MapEntryを使うと便利
 
@@ -27,7 +31,7 @@ class PaintHistory {
   //ドラッグ中フラグ
   bool _inDrag = false;
 
-  //カレントイベント
+  //カレントペイントイベント
   Paint currentPaint;
 
   // undo できるかどうか(実行した操作を取り消せるかどうか) ロールバック
@@ -90,6 +94,7 @@ class PaintHistory {
     if(_inDrag) {
       _PaintData data = _paintList.last.key;
       Path path = data.path;
+      //パスを更新
       path.lineTo(nextPoint.dx, nextPoint.dy);
     }
   }
@@ -98,6 +103,7 @@ class PaintHistory {
    * 線ペイント終了
    */
   void endPaint() {
+    //フラグをfalseにする
     _inDrag = false;
   }
 
@@ -105,6 +111,7 @@ class PaintHistory {
    * 描写
    */
   void draw(Canvas canvas, Size size) {
+    //背景
     canvas.drawRect(
         Rect.fromLTWH(
             0.0,
